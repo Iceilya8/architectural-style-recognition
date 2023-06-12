@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/static/style.css" type="text/css">
+		<title>Распознаватель архитектурных стилей</title>
+	</head>
+	<body>
+		<h1>Загрузите изображение</h1>
+		<form method="POST" enctype="multipart/form-data">
+			<div class="upload-file__wrapper">
+				<input type="file" name="file" id="upload-file__input" class="upload-file__input" accept="image/*">
+				<label id="upload-file__text" class="upload-file__label" for="upload-file__input">Прикрепить файл</label>
+				<button type="submit" class="upload-file__label upload-file__submit">Определить стиль</button>
+			</div>
+		</form>
+		
+        <br><br><br>
+        <h1>Результат</h1>
+        <p>{{ class_name }}</p>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const inputFile = document.getElementById('upload-file__input');
+				const label = document.getElementById('upload-file__text');
+
+				inputFile.addEventListener('change', function (e) {
+					if (this.files && this.files.length > 0) {
+						label.innerText = inputFile.files[0].name;
+					}
+				});
+			}, false);
+		</script>
+	</body>
+</html>
